@@ -13,6 +13,7 @@
  суммы элементов строк; 
 
  максимальные по модулю элементы строк. 
+https://github.com/ArtemProkopovich/EPAM.BSU.01.2016.Prokopovich.01
 
 Задание 2.
 
