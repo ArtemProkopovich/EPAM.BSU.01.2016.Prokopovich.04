@@ -7,18 +7,55 @@ using static System.Math;
 
 namespace Task2
 {
-    public class Rhombus : Rectangle
+    public class Rhombus : Shape
     {
-        public Rhombus(double x, double y, double width, double height) : base(x, y, width, height)
+        private double width;
+        public double Width
         {
+            get { return width; }
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentException();
+                width = value;
+            }
         }
 
-        public Rhombus(Point p, double width, double height) : base(p, width, height)
+        private double height;
+        public double Height
         {
+            get { return height; }
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentException();
+                height = value;
+            }
         }
 
-        public Rhombus(Point leftTop, Point rightBottom) : base(leftTop, rightBottom)
+        public bool IsSquare => Math.Abs(Width - Height) < Accuracy;
+
+        public Point Point { get; }
+
+        public Rhombus(double x, double y, double width, double height)
         {
+            Point = new Point(x, y);
+            Width = width;
+            Height = height;
+        }
+
+        public Rhombus(Point p, double width, double height)
+        {
+            Point = new Point(p);
+            Width = width;
+            Height = height;
+        }
+
+        public Rhombus(Point leftTop, Point rightBottom)
+        {
+            Point = new Point(leftTop);
+            Width = rightBottom.X - leftTop.X;
+            Height = rightBottom.Y - leftTop.Y;
         }
 
         public override double Square()

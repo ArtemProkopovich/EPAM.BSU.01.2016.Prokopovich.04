@@ -6,28 +6,62 @@ using System.Threading.Tasks;
 
 namespace Task2
 {
-    public class Ellipse : Rectangle
+    public class Ellipse : Shape
     {
-        public Ellipse(double x, double y, double width, double height) : base(x, y, width, height)
+        private double width;
+        public double Width
         {
+            get { return width; }
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentException();
+                width = value;
+            }
         }
 
-        public Ellipse(Point p, double width, double height) : base(p, width, height)
+        private double height;
+        public double Height
         {
+            get { return height; }
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentException();
+                height = value;
+            }
         }
 
-        public Ellipse(Point leftTop, Point rightBottom) : base(leftTop, rightBottom)
+        public Point Point { get; }
+
+        public Ellipse(double x, double y, double width, double height)
         {
+            Point = new Point(x, y);
+            Width = width;
+            Height = height;
         }
 
-        public bool IsCircle()
+        public Ellipse(Point p, double width, double height)
         {
-            return Math.Abs(Width - Height) < Accuracy;
+            Point = new Point(p);
+            Width = width;
+            Height = height;
         }
 
-        private new void IsSquare()
+        public Ellipse(Point leftTop, Point rightBottom)
         {
+            Point = new Point(leftTop);
+            Width = rightBottom.X - leftTop.X;
+            Height = rightBottom.Y - leftTop.Y;
         }
+
+        public bool IsCircle => Math.Abs(width - height) < Accuracy;
+
+        public double SemimajorAxis => Math.Max(Width/2, Height/2);
+
+        public double SemiminorAxis => Math.Min(Width / 2, Height / 2);
+
+        public double Eccentricity => Math.Sqrt(1 - Math.Pow(SemiminorAxis, 2)/Math.Pow(SemimajorAxis, 2));
 
         public override double Square()
         {

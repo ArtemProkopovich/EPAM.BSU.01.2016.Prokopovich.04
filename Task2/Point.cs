@@ -8,15 +8,20 @@ using static System.Math;
 
 namespace Task2
 {
-    public class Point : Shape, IEquatable<Point>
+    public struct Point : IEquatable<Point>
     {
+        private static double Accuracy { get; }
         public double X { get; }
         public double Y { get; }
 
+        static Point()
+        {
+            double acr;
+            Accuracy = Double.TryParse(ConfigurationManager.AppSettings.Get("accuracy"), out acr) ? acr : 0.000001;
+        }
+
         public Point(Point point)
         {
-            if (ReferenceEquals(point, null))
-                throw new ArgumentNullException();
             X = point.X;
             Y = point.Y;
         }
@@ -52,17 +57,11 @@ namespace Task2
 
         public bool Equals(Point other)
         {
-            if (ReferenceEquals(other, null))
-                return false;
-            if (ReferenceEquals(this, other))
-                return true;
             return Abs(X - other.X) < Accuracy && Abs(Y - other.Y) < Accuracy;
         }
 
         public static bool Equals(Point lhs, Point rhs)
         {
-            if (ReferenceEquals(lhs, null))
-                return false;
             return lhs.Equals(rhs);
         }
 
@@ -74,16 +73,6 @@ namespace Task2
         public static bool operator !=(Point lhs, Point rhs)
         {
             return !Equals(lhs, rhs);
-        }
-
-        public override double Square()
-        {
-            return 0;
-        }
-
-        public override double Perimetr()
-        {
-            return 0;
         }
     }
 }

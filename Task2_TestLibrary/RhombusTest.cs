@@ -8,7 +8,7 @@ using Task2;
 
 namespace Task2_TestLibrary
 {
-    public class Rhombus_Test
+    public class RhombusTest
     {
         [Test, TestCase(1, 2, 3, 4, Result = 6.0)]
         [TestCase(1, 2, -3, 4, ExpectedException = typeof(ArgumentException))]

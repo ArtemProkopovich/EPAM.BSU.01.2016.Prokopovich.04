@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Math;
 
 namespace Task2
 {
@@ -25,28 +24,6 @@ namespace Task2
             FirstPoint = firstP;
             SecondPoint = secondP;
             ThirdPoint = thirdP;
-        }
-
-        public bool IsIsosceles
-        {
-            get
-            {
-                double l1 = Point.Length(FirstPoint, SecondPoint);
-                double l2 = Point.Length(SecondPoint, ThirdPoint);
-                double l3 = Point.Length(FirstPoint, ThirdPoint);
-                return Abs(l1 - l2) < Accuracy || Abs(l2 - l3) < Accuracy || (Abs(l1 - l3) < Accuracy);
-            }
-        }
-
-        public bool IsEquilateral
-        {
-            get
-            {
-                double l1 = Point.Length(FirstPoint, SecondPoint);
-                double l2 = Point.Length(SecondPoint, ThirdPoint);
-                double l3 = Point.Length(FirstPoint, ThirdPoint);
-                return Abs(l1 - l2) < Accuracy && Abs(l2 - l3) < Accuracy;
-            }
         }
 
         public override double Square()
