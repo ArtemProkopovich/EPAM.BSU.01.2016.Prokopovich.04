@@ -23,7 +23,7 @@ namespace Task2_TestLibrary
         [TestCase(1, 2, 3, 3, Result = true)]
         public bool IsSquare_TestMethod(int x, int y, int width, int height)
         {
-            return new Rectangle(x, y, width, height).IsSquare();
+            return new Rectangle(x, y, width, height).IsSquare;
         }
 
         [Test, TestCase(1, 2, 3, 4, Result = 14)]

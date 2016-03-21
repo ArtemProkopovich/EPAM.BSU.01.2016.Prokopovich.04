@@ -24,7 +24,7 @@ namespace Task2_TestLibrary
         public bool IsCircle_TestMethod(int x, int y, int width, int height)
         {
             Ellipse e = new Ellipse(x, y, width, height);
-            return new Ellipse(x, y, width, height).IsCircle();
+            return new Ellipse(x, y, width, height).IsCircle;
         }
 
         [Test, TestCase(1, 2, 6, 2, Result = 11.42)]
